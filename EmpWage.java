@@ -2,42 +2,46 @@ package com.empwageday09;
 
 public class EmpWage {
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
-		int workingHour=0;
-		int wagePerHour=20;
-		int totalWorkingHour=0;
-		int dayinMonth=20;
-		int maxWorkingHour=100;
-		int totalWage=0;
-		for(int day=0; day<dayinMonth && totalWorkingHour<maxWorkingHour; day++) {
-			int presentAbsent= (int)(Math.floor(Math.random() * 10)) % 3;
-			switch(presentAbsent) {
-			case 1:
-			       workingHour=8;
-			       System.out.print("Emplyee is Present Full time	");
-		            break;
-			case 2:
-			        workingHour=4;
-			        System.out.print("Emplyee is Present Part time ");
-			        break;
-			 default:
-				     workingHour=0;
-				     System.out.print("Emplyee is Absent");
-				     break;
-		
-		}
-		totalWorkingHour+=workingHour;
-		int dailyWage=workingHour*wagePerHour;
-		totalWage+=dailyWage;
-		
-		System.out.println("\t" +"Day " + day + " wage is ::"  + dailyWage);
-		}
-			
-		System.out.println("Monthly wage is::"+totalWage);
-		}
+	public static final int EMP_RATE_PER_HOUR = 20;
+	public static final int IS_FULL_TIME = 1;
+	public static final int IS_PART_TIME = 2;
+	public static int MAX_WORKING_DAYS = 20;
+	public static final int MAX_WORKING_HRS = 100;
 
+	public static void main(String[] args) {
+		System.out.println("Welcome to the Employee Wage Computation Program !!");
+		EmpWage company1 = new EmpWage();
+		EmployeeWageComp("Dmart", 20, 20, 100);
+		EmpWage company2 = new EmpWage();
+		EmployeeWageComp("Kmart", 22, 20, 70);
+		EmpWage company3 = new EmpWage();
+		EmployeeWageComp("Bridgelabz", 15, 2, 20);
 	}
 
+	public static int EmployeeWageComp(String company, int empRatePerHr, int numWorkingDays, int maxHrs) {
+		int empHrs = 0, totalEmpHrs = 8, totalWorkingDays = 0;
+		while (totalEmpHrs <= MAX_WORKING_HRS && totalWorkingDays < MAX_WORKING_DAYS) {
+			totalWorkingDays++;
+			int empcheck = (int) (Math.floor(Math.random() * 10) % 3);
+			switch (empcheck) {
+			case 2:
+				System.out.println("Employee is Part time ");
+				empHrs = 4;
+				break;
+			case 1:
+				System.out.println("Employee is Full time ");
+				empHrs = 8;
+				break;
+			default:
+				System.out.println("Employee is Absent");
+				empHrs = 0;
+			}
+			totalEmpHrs += empHrs;
+		}
+		int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+		System.out.println(company + " company Total Daily Wage for days " + totalWorkingDays + " and hours "
+				+ totalEmpHrs + " is: " + totalEmpWage);
 
-
+		return totalEmpWage;
+	}
+}
