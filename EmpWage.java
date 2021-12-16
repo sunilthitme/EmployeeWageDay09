@@ -3,18 +3,23 @@ package com.empwageday09;
 public class EmpWage {
 
 	public static void main(String[] args) {
-			int presentAbsent= (int)(Math.floor(Math.random() * 10)) % 2;
-			switch (presentAbsent) {
-			case 1:
-				 System.out.print("Emplyee is Present");
-				 break;
-			case 2:
-				 System.out.print("Emplyee is Absent");
-			}
+		int dailyWage=0;
+		int empWagePerHour=20;
+		int workingPerHour=8;
+		int presentAbsent= (int)(Math.floor(Math.random() * 10)) % 2+1;
+		switch (presentAbsent) {
+		case 1:
+			 System.out.print("Emplyee is Present");
+			 dailyWage=workingPerHour*empWagePerHour;
+			 
+			 break;
+		case 2:
+			 System.out.print("Emplyee is Absent");
 		}
-}
-	
+		 System.out.print(" Emplyee Daily Wage is "+dailyWage);
+	}
 
+}
 
 	
 
